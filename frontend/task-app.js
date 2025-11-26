@@ -84,3 +84,61 @@ function deleteTask(id) {
     renderTasks();
     updateStats();
 }
+
+
+// Edit task
+function editTask(id) {
+    const task = tasks.find(t => t.id === id);
+    const newText = prompt("Edit your task:", task.text);
+
+    if (newText === null) return;
+    if (newText.trim() === '') {
+        alert("Task cannot be empty!");
+        return;
+    }
+
+    task.text = newText.trim();
+    saveTasks();
+    renderTasks();
+    updateStats();
+}
+
+// Clear all tasks
+function clearAllTasks() {
+    if (!confirm("Are you sure you want to delete all tasks?")) return;
+
+    tasks = [];
+    saveTasks();
+    renderTasks();
+    updateStats();
+}
+
+
+// Filter buttons
+filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        currentFilter = btn.dataset.filter;
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        renderTasks();
+    });
+});
+
+
+// Stats update
+function updateStats() {
+    const total = tasks.length;
+    const completed = tasks.filter(t => t.completed).length;
+    const active = total - completed;
+
+    document.getElementById('totalTasks').textContent = total;
+    document.getElementById('completedTasks').textContent = completed;
+    document.getElementById('activeTasks').textContent = active;
+}
+
+
+// Add task button + Enter key
+addBtn.addEventListener('click', addTask);
+taskInput.addEventListener('keyup', e => {
+    if (e.key === "Enter") addTask();
+});

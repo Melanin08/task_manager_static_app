@@ -25,13 +25,19 @@
         <!-- Task List -->
         <ul id="taskList" class="task-list"></ul>
         
-        <!-- Statistics -->
+        <!-- Clear all -->
+        <ul id="taskList" class="task-list"></ul>
+        <button id="clearAllBtn" onclick="clearAllTasks()">Clear All</button>
+
+     
+       <!-- Statistics -->
         <div class="stats">
-            <span id="totalTasks">0 tasks</span>
-            <span id="completedTasks">0 completed</span>
-        </div>
-    </div>
-    
+            <span>Total: <span id="totalTasks">0</span></span>
+            <span>Completed: <span id="completedTasks">0</span></span>
+            <span>Active: <span id="activeTasks">0</span></span>
+       </div>
+
+   
     <script src="task-app.js"></script>
 </body>
 </html>
